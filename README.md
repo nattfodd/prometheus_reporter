@@ -17,7 +17,7 @@ Creating text report for Prometheus:
 ```ruby
 require 'prometheus_reporter'
 
-f = PrometheusReporter::TextFormatter.new
+f = PrometheusReporter::TextFormatter.new(prefix: 'facebook_clone')
 # Optional: creates a line with the description for the key
 # # HELP facebook_clone_emails_today Events created from the beginning of the day
 f.help(:emails_today, 'Events created from the beginning of the day')
