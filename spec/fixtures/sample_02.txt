@@ -1,0 +1,4 @@
+# HELP foo_bar_emails_today Amount of emails sent today
+# TYPE foo_bar_emails_today counter
+foo_bar_emails_today{type="registration"} 10 1515748928
+foo_bar_emails_today{type="reset_password"} 15 1515748928

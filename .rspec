@@ -1,0 +1,4 @@
+--color
+--order rand
+--format doc
+--require spec_helper

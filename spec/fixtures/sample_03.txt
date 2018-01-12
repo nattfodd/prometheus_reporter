@@ -1,0 +1,6 @@
+# TYPE emails_today counter
+emails_today{type="registration"} 10 1515748928
+
+# HELP jobs_performed Total jobs performed so far
+# TYPE jobs_performed summary
+jobs_performed 33 1515748928
