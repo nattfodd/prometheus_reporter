@@ -13,7 +13,7 @@ f.to_s
 # => 'my_metric{souce="api",module="chat"} 144'
 ```
 
-## Installtion
+## Installation
 Installation is pretty standard:
 ```bash
 $ gem install prometheus_reporter
@@ -25,7 +25,7 @@ gem 'prometheus_reporter', '~> 1.0'
 ## Configuration
 
 You may want to have metric keys application prefix to distinguish those metrics
-from metric keys of other applications.
+from metric keys reported by other applications.
 
 By default, `prefix` isn't used.
 
