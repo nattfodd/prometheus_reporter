@@ -1,4 +1,7 @@
-[![Gem Version](https://badge.fury.io/rb/prometheus_reporter.svg)](https://badge.fury.io/rb/prometheus_reporter) [![Build Status](https://travis-ci.org/nattfodd/prometheus_reporter.svg?branch=master)](https://travis-ci.org/nattfodd/prometheus_reporter)
+[![Gem Version](https://badge.fury.io/rb/prometheus_reporter.svg)](https://badge.fury.io/rb/prometheus_reporter)
+[![Build Status](https://travis-ci.org/nattfodd/prometheus_reporter.svg?branch=master)](https://travis-ci.org/nattfodd/prometheus_reporter)
+[![Dependency Status](https://gemnasium.com/nattfodd/prometheus_reporter.svg)](https://gemnasium.com/nattfodd/prometheus_reporter)
+[![Maintainability Status](https://img.shields.io/codeclimate/maintainability/nattfodd/prometheus_reporter.svg)](https://codeclimate.com/github/nattfodd/prometheus_reporter)
 
 ## Prometheus Reporter
 `prometheus_reporter` helps you to generate [Prometheus](https://prometheus.io) metric reports using its [text format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-format-details). Official client helps you to monitor internal web-server guts, while `prometheus_reporter` can help you representing any data you want.
