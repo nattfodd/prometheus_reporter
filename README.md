@@ -10,23 +10,39 @@ PrometheusReporter.configure do |config|
 end
 ```
 
+## Configuration
+
+The only option available so far is to set global prefix
+which will be appended by default to every metric.
+
+```ruby
+PrometheusReporter.configure do |c|
+  c.prefix = 'my_web_app'
+end
+
+f = PrometheusReporter::TextFormatter.new
+f.entry(:emails_count, 567)
+f.to_s # => "my_web_app_emails_count 567\n"
+```
+
+You can overwrite it on creating new `TextFormatter` instance:
+
+```ruby
+f = PrometheusReporter::TextFormatter.new(prefix: 'facebook_clone')
+f.entry(:emails_count, 987)
+f.to_s # => "facebook_clone_emails_count 987\n"
+```
+
 ## Usage
 
-Creating text report for Prometheus:
+### Creating text report for Prometheus:
 
 ```ruby
 require 'prometheus_reporter'
 
-f = PrometheusReporter::TextFormatter.new(prefix: 'facebook_clone')
-# Optional: creates a line with the description for the key
-# # HELP facebook_clone_emails_today Events created from the beginning of the day
+f = PrometheusReporter::TextFormatter.new
 f.help(:emails_today, 'Events created from the beginning of the day')
-# Optional: creates a line specifying key type
-# (if ommited, Prometheus marks key as :untyped)
-# # TYPE facebook_clone_emails_today counter
 f.type(:emails_today, :counter)
-# Required: creates a line with key, labels, value, and timestamp
-# facebook_clone_emails_today{type="notify_for_inactivity"} 10 1515681885
 f.entry(:emails_today,
         value: 10,
         labels: { type: 'notify_for_inactivity' }
@@ -43,7 +59,7 @@ f.to_s
 #   facebook_clone_emails_today{type="registration_confirmation"} 18 1515681886
 ```
 
-Parsing Prometheus text format:
+### Parsing Prometheus text format (not implemented yet):
 
 ```ruby
 str = <<-PROMETHEUS_TEXT
