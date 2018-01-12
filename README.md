@@ -59,11 +59,11 @@ f.help(:emails_today, 'Events created from the beginning of the day')
 f.type(:emails_today, :counter)
 f.entry(:emails_today,
         value: 10,
-        labels: { type: 'notify_for_inactivity' }
+        labels: { type: 'notify_for_inactivity' },
         timestamp: Time.now.to_i)
 f.entry(:emails_today,
         value: 18,
-        labels: { type: 'registration_confirmation' }
+        labels: { type: 'registration_confirmation' },
         timestamp: Time.now.to_i)
 f.to_s
 ```
