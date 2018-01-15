@@ -125,4 +125,27 @@ describe PrometheusReporter::TextFormatter do
       end
     end
   end
+
+  describe '#draw' do
+    it 'uses DSL to draw text report' do
+      res =
+        described_class.draw do
+          key       = :emails_today
+          timestamp = 1515748928
+
+          entry(key,
+                value: 10,
+                labels: { type: 'registration' },
+                timestamp: timestamp)
+          entry(key,
+                value: 15,
+                labels: { type: 'reset_password' },
+                timestamp: timestamp)
+          type(key, :counter)
+          help(key, 'Amount of emails sent today')
+        end
+
+      expect(res).to eq(read_fixture('sample_01'))
+    end
+  end
 end

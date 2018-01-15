@@ -10,6 +10,14 @@ module PrometheusReporter
     TOKENS     = [HELP_TOKEN, TYPE_TOKEN].freeze
     SEPARATOR  = "\n"
 
+    class << self
+      def draw(prefix: PrometheusReporter.config.prefix, &block)
+        formatter = new(prefix: prefix)
+        formatter.instance_eval(&block)
+        formatter.to_s
+      end
+    end
+
     def initialize(prefix: PrometheusReporter.config.prefix)
       @data = {}
       @prefix = prefix
