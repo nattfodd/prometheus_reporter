@@ -23,7 +23,7 @@ $ gem install prometheus_reporter
 ```
 or using `Gemfile`:
 ```ruby
-gem 'prometheus_reporter', '~> 1.0'
+gem 'prometheus_reporter', '~> 1.1.1'
 ```
 ## Configuration
 
@@ -52,6 +52,24 @@ f.to_s # => "facebook_clone_emails_count 987\n"
 
 ## Usage
 
+### DSL
+
+You can also use DSL to define reports:
+
+```ruby
+report =
+  PrometheusReporter::TextFormatter.draw(prefix: 'my_application') do
+    type  :emails_today, :counter
+    entry :emails_today, value: 1337
+
+    type  :registrations_today, :counter
+    entry :registrations_today, value: 105
+
+    type  :payments_total, :summary
+    entry :payments_total, 29913
+  end
+```
+
 ### Creating text report for Prometheus:
 
 ```ruby
@@ -78,24 +96,6 @@ Produces the following output:
 # TYPE facebook_clone_emails_today counter
 facebook_clone_emails_today{type="notify_for_inactivity"} 10 1515681885
 facebook_clone_emails_today{type="registration_confirmation"} 18 1515681886
-```
-
-### DSL
-
-You can also use DSL to define reports:
-
-```ruby
-report =
-  PrometheusReporter::TextFormatter.draw(prefix: 'my_application') do
-    type  :emails_today, :counter
-    entry :emails_today, value: 1337
-
-    type  :registrations_today, :counter
-    entry :registrations_today, value: 105
-
-    type  :payments_total, :summary
-    entry :payments_total, 29913
-  end
 ```
 
 ## Usefull links
