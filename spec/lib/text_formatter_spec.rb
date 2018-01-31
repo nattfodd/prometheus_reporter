@@ -147,5 +147,34 @@ describe PrometheusReporter::TextFormatter do
 
       expect(res).to eq(read_fixture('sample_01'))
     end
+
+    context 'when the order of labels is chaotic' do
+      let(:report) do
+        described_class.draw do
+          timestamp = 1515748928
+
+          entry(:jobs_performed,
+                value: 55,
+                labels: { type: 'SubscriptionEmail' },
+                timestamp: timestamp)
+          help(:emails_today, 'Amount of emails sent today')
+          entry(:emails_today,
+                value: 15,
+                labels: { type: 'reset_password' },
+                timestamp: timestamp)
+          help(:jobs_performed, 'Total jobs performed so far')
+          type(:emails_today, :counter)
+          type(:jobs_performed, :gauge)
+          entry(:emails_today,
+                value: 10,
+                labels: { type: 'registration' },
+                timestamp: timestamp)
+        end
+      end
+
+      it 'returns enties in alphabetical order' do
+        expect(report).to eq(read_fixture('sample_04'))
+      end
+    end
   end
 end

@@ -50,7 +50,7 @@ module PrometheusReporter
     def to_s
       metrics_data = []
 
-      @data.each do |prometheus_key_name, prometheus_key_values|
+      sort_hash(@data).each do |prometheus_key_name, prometheus_key_values|
         prometheus_key_values = prometheus_key_values.compact
         validate_data!(prometheus_key_name, prometheus_key_values)
         metrics_data << metric_entry(prometheus_key_name, prometheus_key_values)
@@ -89,6 +89,7 @@ module PrometheusReporter
       prometheus_key_values.each do |label_or_token, value|
         metric_lines << text_entry(prometheus_key_name, label_or_token, value)
       end
+      metric_lines.sort!
       (metric_lines << nil).join(SEPARATOR)
     end
 
@@ -119,6 +120,10 @@ module PrometheusReporter
         end.join(',')
 
       "{#{labels_str}}"
+    end
+
+    def sort_hash(hash)
+      Hash[hash.sort]
     end
   end
 end

@@ -1,0 +1,8 @@
+# HELP emails_today Amount of emails sent today
+# TYPE emails_today counter
+emails_today{type="registration"} 10 1515748928
+emails_today{type="reset_password"} 15 1515748928
+
+# HELP jobs_performed Total jobs performed so far
+# TYPE jobs_performed gauge
+jobs_performed{type="SubscriptionEmail"} 55 1515748928
