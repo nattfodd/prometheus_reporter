@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
                                   f.match(%r{^(test|spec|features)/})
                                 end
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.required_ruby_version = '~> 2.4'
+  s.required_ruby_version = '>= 2.4'
 
   s.require_paths = ['lib']
 
